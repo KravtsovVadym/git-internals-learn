@@ -15,3 +15,12 @@ def hash_object(data):
         obj_path.write_bytes(data)
 
     return oid
+
+def get_object(oid):
+    obj_path = Path(GIT_DIR) / 'objects' / oid
+
+    if not obj_path.exists():
+        return "file not found"
+
+    data =  obj_path.read_bytes()
+    return data
